@@ -1,170 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>1 Col Portfolio - Start Bootstrap Template</title>
-
+    <meta name="description" content="Doc Page">
+    <meta name="author" content="Jared Pinargote">
+    <title>Documentation | CIT 261</title>
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/script.js"></script>
+</head>
 
-    <!-- Custom styles for this template -->
-    <link href="css/1-col-portfolio.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-
+<body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
+        <div class="container">
+            <a class="navbar-brand" href="catalog.php">Jared Pinargote</a>
         </div>
-      </div>
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
-
-      <!-- Page Heading -->
-      <h1 class="my-4">Page Heading
-        <small>Secondary Text</small>
-      </h1>
-
-      <!-- Project One -->
-      <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
+    <div class="container" id="content">
+        <h1>CIT 261 - Fluency Documentation</h1>
+        <hr>
+        <div class="container main" id="sec1">
+            <a data-toggle="collapse" href="#collapse1">
+                <h2>Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</h2>
+                <hr>
+            </a>
+            <div id="collapse1" class="collapse">
+                <p><strong>Javascript loops</strong> allow you to repeat a task multiple times. For example, you can print the numbers 1 through 100 without having to hard code them in.</p>
+                <pre class="prettyprint">
+                    function countUp() {
+                        var d = document.getElementById("1to100");
+                        d.innerHTML = "";
+                        for(var i = 1; i <= 100; i++){
+                            d.innerHTML += i + ", ";
+                        }
+                    }
+                </pre>
+                <button class="btn btn-primary" onclick="countUp();">Click to display numbers from 1 to 100</button>
+                <br>
+                <div class="container" id='1to100'></div>
+                <hr>
+                <p><strong>Conditional statements</strong> allow you run tasks based on if they meet certain conditions. For example, I can make every even number italicized.</p>
+                <pre class="prettyprint">
+                    function countUp2() {
+                        var d = document.getElementById("1to100even");
+                        d.innerHTML = "";
+                        for(var i = 1; i <= 100; i++){
+                            if( i % 2 != 0){
+                                d.innerHTML += i + ", ";
+                            } else {
+                                d.innerHTML += "&lt;em&gt;" + i + "&lt;/em&gt;, ";
+                            }
+                        }
+                    }
+                </pre>
+                <button class="btn btn-primary" onclick="countUp2();">Click to display numbers from 1 to 100 with even italicized</button>
+                <br>
+                <div class="container" id='1to100even'></div>
+                <hr>
+                <p><strong>Functions</strong> allow you to seperate tasks into modularized chunks. My previous chunks of code demonstrate the syntax of a javascript function.</p>
+                <hr>
+                <p><strong>Variables</strong> function similar to variables in algebra. A value or resource is assigned to a variable, which can then be manipulated like the following:</p>
+                <pre class="prettyprint">
+                    // Initializing the variable
+                    var a = 3;
+    
+                    // Add to the variable;
+                    var a += 2; // a is now '5'
+    
+                    // Set a whole new value
+                    var a = 10; // a is now '10'
+    
+                    // Add variables, just like in algebra
+                    var b = 11;
+                    var c = a + b; // c is now 21
+                </pre>
+                <hr>
+                <p><strong>Parameters</strong> are the names in the () that allow arguments to be passed into a function, making the function useful for accomplishing a task with a give input.</p>
+                <pre class="prettyprint">
+                    function add(parameter1, parameter2) {
+                        return parameter1 + parameter2;
+                    }
+    
+                    var result = add(5,4); // result is now 9
+                </pre>
+                <hr>
+                <p><strong>Arrays</strong> allow you to store multiple items in one variable.</p>
+                <pre class="prettyprint">
+                    var classes = ["CIT 261", "CS 235", "CS 308"];
+                    var firstClass = classes[0]; // firstClass is now 'CIT 261'
+                </pre>
+                <hr>
+                <p><strong>Associative Arrays</strong> are arrays with string indexes, like 'name' instead of a number like 4. JavaScript <em>does not</em> support associative arrays.</p>
+                <pre class="prettyprint">
+                    var classes = [];
+                    classes["firstClass"] = "CIT 261";
+                    var x = classes.length; // Will return 0 
+                                            // because nothing 
+                                            // was set
+                </pre>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse1">Collapse Section</button>
+                <hr>
+            </div>
         </div>
-        <div class="col-md-5">
-          <h3>Project One</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-          <a class="btn btn-primary" href="#">View Project</a>
+        <div class="container main" id="sec2">
+            <a data-toggle="collapse" href="#collapse2">
+                <h2>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</h2>
+                <hr>
+            </a>
+            <div id="collapse2" class="collapse">
+                <p>An <strong>object</strong> is a collection of properties, and a <strong>property</strong> is an association between a name (or key) and a value. (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects">Source</a>) An object can be very useful when dealing with  complex amounts of information.</p>
+                <hr>
+                <p>An object can be <strong>instantiated</strong>, or generated, by the following method:</p>
+                <pre class="prettyprint">
+                    var Person = new Object();
+                </pre>
+                <hr>
+                <p>Objects then can be given <strong>properties</strong> by the following method:</p>
+                <pre class="prettyprint">
+                    Person.race = 'Hispanic';
+                    Person.name = 'Jared';
+                    Person.desireForaGoodGradeInCIT261 = 999;
+                </pre>
+                <hr>
+                <p>Objects can be given <strong>methods</strong> as follows:</p>
+                <pre class="prettyprint">
+                    var Person = {
+                        greet() {
+                            console.log("Hello, I am " + this.name + "!");
+                        }
+                    };
+                </pre>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse2">Collapse Section</button>
+                <hr>
+            </div>
         </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-
-      <!-- Project Two -->
-      <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
+        <div class="container main" id="sec3">
+            <a data-toggle="collapse" href="#collapse3">
+                <h2>JSON Parse, Stringify</h2>
+                <hr>
+            </a>
+            <div id="collapse3" class="collapse">
+                <p>JavaScript Object Notation or <strong>JSON</strong> is a common way to exchange data on the internet between servers. A plain text JSON could arrive in the following way:</p>
+                <pre class="prettyprint">
+                    '{ 
+                        "race":"Hispanic", 
+                        "name":"Jared", 
+                        "desireForaGoodGradeInCIT261": 999
+                    }'
+                </pre>
+                <p>Using <strong>JSON.parse()</strong>, we can convert the string into an object for easy data handeling:</p>
+                <pre class="prettyprint">
+                    /* Note the JSON is on one line.
+                     * Breaking up the text in the text editor
+                     * will break the JSON string
+                     */
+                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
+                    var d = document.getElementById("jsonParse");
+                    d.innerHTML = Person.name + " says Hi!"; 
+                </pre>
+                <button class="btn btn-primary" onclick="jsonParseTest();">Run Code</button>
+                <br>
+                <div class="container" id='jsonParse'></div>
+                <hr>
+                <p>Using <strong>JSON.stringify()</strong>, we can convert the object back into a string for easy data transfer:</p>
+                <pre class="prettyprint">
+                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
+                    var d = document.getElementById("jsonString");
+                    d.innerHTML = Person.name + " says Hi!&lt;br&gt;";
+                    var jsonString = JSON.stringify(Person);
+                    d.innerHTML += jsonString;
+                </pre>
+                <button class="btn btn-primary" onclick="jsonStringTest();">Run Code</button>
+                <br>
+                <div class="container" id='jsonString'></div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse3">Collapse Section</button>
+                <hr>
+            </div>
         </div>
-        <div class="col-md-5">
-          <h3>Project Two</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
-          <a class="btn btn-primary" href="#">View Project</a>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-
-      <!-- Project Three -->
-      <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Project Three</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
-          <a class="btn btn-primary" href="#">View Project</a>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-
-      <!-- Project Four -->
-      <div class="row">
-
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Project Four</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
-          <a class="btn btn-primary" href="#">View Project</a>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-
-      <!-- Pagination -->
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-
     </div>
-    <!-- /.container -->
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Jared Pinargote 2017
+        </p>
       </div>
-      <!-- /.container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
   </body>
 
