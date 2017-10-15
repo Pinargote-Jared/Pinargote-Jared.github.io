@@ -16,9 +16,22 @@
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
     <script src="js/script.js"></script>
+    <style>
+        #eventTestOutput3 {
+            height: 100px;
+            background: lightblue;
+            position: relative;
+            font-size: 20px;
+        }
+
+        @keyframes move {
+            from {top: 0px;}
+            to {top: 200px;}
+        }
+    </style>
 </head>
 
-<body>
+<body onload="init();">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -30,6 +43,7 @@
     <div class="container" id="content">
         <h1>CIT 261 - Fluency Documentation</h1>
         <hr>
+        <!-- Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays -->
         <div class="container main" id="sec1">
             <a data-toggle="collapse" href="#collapse1">
                 <h2>Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</h2>
@@ -38,13 +52,13 @@
             <div id="collapse1" class="collapse">
                 <p><strong>Javascript loops</strong> allow you to repeat a task multiple times. For example, you can print the numbers 1 through 100 without having to hard code them in.</p>
                 <pre class="prettyprint">
-                    function countUp() {
-                        var d = document.getElementById("1to100");
-                        d.innerHTML = "";
-                        for(var i = 1; i <= 100; i++){
-                            d.innerHTML += i + ", ";
-                        }
-                    }
+    function countUp() {
+        var d = document.getElementById("1to100");
+        d.innerHTML = "";
+        for(var i = 1; i <= 100; i++){
+            d.innerHTML += i + ", ";
+        }
+    }
                 </pre>
                 <button class="btn btn-primary" onclick="countUp();">Click to display numbers from 1 to 100</button>
                 <br>
@@ -52,17 +66,17 @@
                 <hr>
                 <p><strong>Conditional statements</strong> allow you run tasks based on if they meet certain conditions. For example, I can make every even number italicized.</p>
                 <pre class="prettyprint">
-                    function countUp2() {
-                        var d = document.getElementById("1to100even");
-                        d.innerHTML = "";
-                        for(var i = 1; i <= 100; i++){
-                            if( i % 2 != 0){
-                                d.innerHTML += i + ", ";
-                            } else {
-                                d.innerHTML += "&lt;em&gt;" + i + "&lt;/em&gt;, ";
-                            }
-                        }
-                    }
+    function countUp2() {
+        var d = document.getElementById("1to100even");
+        d.innerHTML = "";
+        for(var i = 1; i <= 100; i++){
+            if( i % 2 != 0){
+                d.innerHTML += i + ", ";
+            } else {
+                d.innerHTML += "&lt;em&gt;" + i + "&lt;/em&gt;, ";
+            }
+        }
+    }
                 </pre>
                 <button class="btn btn-primary" onclick="countUp2();">Click to display numbers from 1 to 100 with even italicized</button>
                 <br>
@@ -72,47 +86,49 @@
                 <hr>
                 <p><strong>Variables</strong> function similar to variables in algebra. A value or resource is assigned to a variable, which can then be manipulated like the following:</p>
                 <pre class="prettyprint">
-                    // Initializing the variable
-                    var a = 3;
-    
-                    // Add to the variable;
-                    var a += 2; // a is now '5'
-    
-                    // Set a whole new value
-                    var a = 10; // a is now '10'
-    
-                    // Add variables, just like in algebra
-                    var b = 11;
-                    var c = a + b; // c is now 21
+    // Initializing the variable
+    var a = 3;
+
+    // Add to the variable;
+    var a += 2; // a is now '5'
+
+    // Set a whole new value
+    var a = 10; // a is now '10'
+
+    // Add variables, just like in algebra
+    var b = 11;
+    var c = a + b; // c is now 21
                 </pre>
                 <hr>
                 <p><strong>Parameters</strong> are the names in the () that allow arguments to be passed into a function, making the function useful for accomplishing a task with a give input.</p>
                 <pre class="prettyprint">
-                    function add(parameter1, parameter2) {
-                        return parameter1 + parameter2;
-                    }
-    
-                    var result = add(5,4); // result is now 9
+    function add(parameter1, parameter2) {
+        return parameter1 + parameter2;
+    }
+
+    var result = add(5,4); // result is now 9
                 </pre>
                 <hr>
                 <p><strong>Arrays</strong> allow you to store multiple items in one variable.</p>
                 <pre class="prettyprint">
-                    var classes = ["CIT 261", "CS 235", "CS 308"];
-                    var firstClass = classes[0]; // firstClass is now 'CIT 261'
+    var classes = ["CIT 261", "CS 235", "CS 308"];
+    var firstClass = classes[0]; // firstClass is now 'CIT 261'
                 </pre>
                 <hr>
                 <p><strong>Associative Arrays</strong> are arrays with string indexes, like 'name' instead of a number like 4. JavaScript <em>does not</em> support associative arrays.</p>
                 <pre class="prettyprint">
-                    var classes = [];
-                    classes["firstClass"] = "CIT 261";
-                    var x = classes.length; // Will return 0 
-                                            // because nothing 
-                                            // was set
+    var classes = [];
+    classes["firstClass"] = "CIT 261";
+    var x = classes.length; // Will return 0 
+                            // because nothing 
+                            // was set
                 </pre>
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse1">Collapse Section</button>
                 <hr>
             </div>
         </div>
+
+        <!-- Object Creation Functions, Inheritance, Properties, Methods, Instantiation -->
         <div class="container main" id="sec2">
             <a data-toggle="collapse" href="#collapse2">
                 <h2>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</h2>
@@ -123,34 +139,170 @@
                 <hr>
                 <p>An object can be <strong>instantiated</strong>, or generated, by the following method:</p>
                 <pre class="prettyprint">
-                    var Person = new Object();
+    var Person = new Object();
                 </pre>
                 <hr>
                 <p>Objects then can be given <strong>properties</strong> by the following method:</p>
                 <pre class="prettyprint">
-                    Person.race = 'Hispanic';
-                    Person.name = 'Jared';
-                    Person.desireForaGoodGradeInCIT261 = 999;
+    Person.race = 'Hispanic';
+    Person.name = 'Jared';
+    Person.desireForaGoodGradeInCIT261 = 999;
                 </pre>
                 <hr>
                 <p>Objects can be given <strong>methods</strong> as follows:</p>
                 <pre class="prettyprint">
-                    var Person = {
-                        greet() {
-                            console.log("Hello, I am " + this.name + "!");
-                        }
-                    };
+    var Person = {
+        greet() {
+            console.log("Hello, I am " + this.name + "!");
+        }
+    };
                 </pre>
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse2">Collapse Section</button>
                 <hr>
             </div>
         </div>
+
+        <!-- JSON Parse, Stringify -->
         <div class="container main" id="sec3">
             <a data-toggle="collapse" href="#collapse3">
                 <h2>JSON Parse, Stringify</h2>
                 <hr>
             </a>
             <div id="collapse3" class="collapse">
+                <p>JavaScript Object Notation or <strong>JSON</strong> is a common way to exchange data on the internet between servers. A plain text JSON could arrive in the following way:</p>
+                <pre class="prettyprint">
+    '{ 
+        "race":"Hispanic", 
+        "name":"Jared", 
+        "desireForaGoodGradeInCIT261": 999
+    }'
+                </pre>
+                <p>Using <strong>JSON.parse()</strong>, we can convert the string into an object for easy data handeling:</p>
+                <pre class="prettyprint">
+   /* Note the JSON is on one line.
+    * Breaking up the text in the text editor
+    * will break the JSON string
+    */
+    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
+    var d = document.getElementById("jsonParse");
+    d.innerHTML = Person.name + " says Hi!"; 
+                </pre>
+                <button class="btn btn-primary" onclick="jsonParseTest();">Run Code</button>
+                <br>
+                <div class="container" id='jsonParse'></div>
+                <hr>
+                <p>Using <strong>JSON.stringify()</strong>, we can convert the object back into a string for easy data transfer:</p>
+                <pre class="prettyprint">
+    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
+    var d = document.getElementById("jsonString");
+    d.innerHTML = Person.name + " says Hi!&lt;br&gt;";
+    var jsonString = JSON.stringify(Person);
+    d.innerHTML += jsonString;
+                </pre>
+                <button class="btn btn-primary" onclick="jsonStringTest();">Run Code</button>
+                <br>
+                <div class="container" id='jsonString'></div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse3">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Using XMLHTTPRequest to Consume a JSON Web Service -->
+        <div class="container main" id="sec4">
+            <a data-toggle="collapse" href="#collapse4">
+                <h2>Using XMLHTTPRequest to Consume a JSON Web Service</h2>
+                <hr>
+            </a>
+            <div id="collapse4" class="collapse">
+                <p><strong>XMLHTTPRequest</strong> sends a request to web server, which returns data. Useful for REST APIs and asynchronous loading</p>
+                <pre class="prettyprint">
+    function requestTest() {
+        console.log("Request Test Running...");
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var test = JSON.parse(xhttp.responseText);
+                console.log(test);
+                document.getElementById("requestTestResult").innerHTML = test.body;
+            } else {
+                document.getElementById("requestTestResult").innerHTML = "Error in request";
+            }
+        };
+        xhttp.open("GET", 'https://jsonplaceholder.typicode.com/posts/1', true);
+        xhttp.send();
+    }
+                </pre>
+                <button class="btn btn-primary" onclick="requestTest();">Run Code</button>
+                <br>
+                <div class="container" id='requestTestResult'></div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse4">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Local Storage API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects -->
+        <div class="container main" id="sec5">
+            <a data-toggle="collapse" href="#collapse5">
+                <h2>Local Storage API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects</h2>
+                <hr>
+            </a>
+            <div id="collapse5" class="collapse">
+                <p><strong>Local Storage</strong> is a way to store data locally on the client's machine. It provides a greater size limit than cookies. Because local storage only supports strings, arrays, associative arrays, and objects need to be serialized before storage, and parsed on retrival.
+                </p>
+                <pre class="prettyprint">
+    function localTest() {
+        console.log("Local Storage Test Running...");
+        // Storing in Local Storage
+        localStorage.simpleData = "Hello world! ";
+        localStorage.setItem("array", JSON.stringify(["blue", "orange", "red"]));
+        var aa = {
+            "love" : "chocolate",
+            "like" : "to dance",
+            "hate" : "loosing"
+        };
+        localStorage.setItem("associative", JSON.stringify(aa));
+        var Person = new Object();
+        Person.name = "Jared";
+        Person.age = 23;
+        localStorage.setItem("obj", JSON.stringify(Person));
+
+        // Retriving from Local Storage
+        var output = document.getElementById("localOutput");
+        var savedPerson = JSON.parse(localStorage.getItem("obj"));
+        output.innerHTML = localStorage.simpleData
+            + "My name is " + savedPerson.name + ". "
+            + "I am " + savedPerson.age + " years old. "
+            + "My favorite colors are:&lt;ul&gt;";
+        var savedArray = JSON.parse(localStorage.getItem("array"));
+        savedArray.forEach(function(color) {
+            output.innerHTML += "&lt;li&gt;"+color+"&lt;/li&gt;";
+        }, this);
+        output.innerHTML += "&lt;/ul&gt;&lt;br&gt;";
+        var savedAA = JSON.parse(localStorage.getItem("associative"));
+        console.log(savedAA);
+        Object.keys(savedAA).forEach(function(key) {
+            output.innerHTML += "I " + key +" "+ savedAA[key] + ". ";
+        }, this);
+    }
+                </pre>
+                <button class="btn btn-primary" onclick="localTest();">Run Code</button>
+                <br>
+                <div class="container" id='localOutput'></div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse5">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc. -->
+        <div class="container main" id="sec6">
+            <a data-toggle="collapse" href="#collapse6">
+                <h2>DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</h2>
+                <hr>
+            </a>
+            <div id="collapse6" class="collapse">
                 <p>JavaScript Object Notation or <strong>JSON</strong> is a common way to exchange data on the internet between servers. A plain text JSON could arrive in the following way:</p>
                 <pre class="prettyprint">
                     '{ 
@@ -185,7 +337,122 @@
                 <br>
                 <div class="container" id='jsonString'></div>
                 <hr>
-                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse3">Collapse Section</button>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse6">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Manipulating CSS Class Properties Using JavaScript -->
+        <div class="container main" id="sec7">
+            <a data-toggle="collapse" href="#collapse7">
+                <h2>Manipulating CSS Class Properties Using JavaScript</h2>
+                <hr>
+            </a>
+            <div id="collapse7" class="collapse">
+                <p>JavaScript Object Notation or <strong>JSON</strong> is a common way to exchange data on the internet between servers. A plain text JSON could arrive in the following way:</p>
+                <pre class="prettyprint">
+                    '{ 
+                        "race":"Hispanic", 
+                        "name":"Jared", 
+                        "desireForaGoodGradeInCIT261": 999
+                    }'
+                </pre>
+                <p>Using <strong>JSON.parse()</strong>, we can convert the string into an object for easy data handeling:</p>
+                <pre class="prettyprint">
+                    /* Note the JSON is on one line.
+                     * Breaking up the text in the text editor
+                     * will break the JSON string
+                     */
+                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
+                    var d = document.getElementById("jsonParse");
+                    d.innerHTML = Person.name + " says Hi!"; 
+                </pre>
+                <button class="btn btn-primary" onclick="jsonParseTest();">Run Code</button>
+                <br>
+                <div class="container" id='jsonParse'></div>
+                <hr>
+                <p>Using <strong>JSON.stringify()</strong>, we can convert the object back into a string for easy data transfer:</p>
+                <pre class="prettyprint">
+                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
+                    var d = document.getElementById("jsonString");
+                    d.innerHTML = Person.name + " says Hi!&lt;br&gt;";
+                    var jsonString = JSON.stringify(Person);
+                    d.innerHTML += jsonString;
+                </pre>
+                <button class="btn btn-primary" onclick="jsonStringTest();">Run Code</button>
+                <br>
+                <div class="container" id='jsonString'></div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse7">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events -->
+        <div class="container main" id="sec9">
+            <a data-toggle="collapse" href="#collapse9">
+                <h2>Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events</h2>
+                <hr>
+            </a>
+            <div id="collapse9" class="collapse">
+                <p><strong>Javascript Events</strong> provides a way for javascript to react to different events such as a click or touch, making thinks like UI easier to program</p>
+                <pre class="prettyprint">
+    function eventTest() {
+        var output = document.getElementById('eventTestOutput');
+        var output2 = document.getElementById('eventTestOutput2');
+        output.innerHTML = &quot;&lt;br&gt;&lt;button class='btn' id='eventButton'&gt;Click Me!&lt;/button&gt;&lt;br&gt;&quot;;
+        output2.innerHTML = &quot;&lt;br&gt;&lt;button class='btn' id='eventButton2'&gt;Touch Me!&lt;/button&gt;&lt;br&gt;&quot;;
+        var btn = document.getElementById('eventButton');
+        var btn2 = document.getElementById('eventButton2');
+        btn.onclick = function() {
+            var rndCol = 'rgb(0,0,255)';
+            output.style.backgroundColor = rndCol;
+            output.innerHTML += &quot;Clicked!&lt;br&gt;&quot;;
+        }
+        output2.onmouseover = function() {
+            var rndCol = 'rgb(255,255,255)';
+            output2.style.backgroundColor = rndCol;
+            output2.innerHTML += &quot;Mouse over!&lt;br&gt;&quot;;
+        }
+        output2.onmouseout = function() {
+            var rndCol = 'rgb(0,255,0)';
+            output2.style.backgroundColor = rndCol;
+            output2.innerHTML += &quot;Mouse out!&lt;br&gt;&quot;;
+        }
+        btn2.ontouchstart = function () {
+            var rndCol = 'rgb(255,255,0)';
+            output2.style.backgroundColor = rndCol;
+            output2.innerHTML += &quot;Touch Started!&lt;br&gt;&quot;;
+        }
+        btn2.ontouchend = function () {
+            var rndCol = 'rgb(0,255,255)';
+            output2.style.backgroundColor = rndCol;
+            output2.innerHTML += &quot;Touch Ended!&lt;br&gt;&quot;;
+        }
+        var move = document.getElementById(&quot;eventTestOutput3&quot;);
+
+        move.style.animation = &quot;move 4s 2&quot;;
+
+        move.animationstart = function() {
+            move.innerHTML = &quot;animationstart event occured - The animation has started&quot;;
+            move.style.background = &quot;pink&quot;;
+        }
+        move.animationiteration = function() {
+            move.style.background = &quot;lightblue&quot;;
+        }
+        move.animationend = function() {
+            move.style.background = &quot;lightgray&quot;;
+        }
+    }
+                </pre>
+                <button class="btn btn-primary" onclick="eventTest();">Run Code</button>
+                <br>
+                <div class="container" id='eventTestOutput'>Test Div</div>
+                <div class="container" id='eventTestOutput2'>Mouse/Touch Div</div>
+                <hr>
+                <div class="container" id='eventTestOutput3'>Click Run Code move</div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse9">Collapse Section</button>
                 <hr>
             </div>
         </div>
