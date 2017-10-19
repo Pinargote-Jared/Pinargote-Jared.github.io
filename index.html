@@ -456,6 +456,109 @@
                 <hr>
             </div>
         </div>
+
+        <!-- Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries -->
+        <div class="container main" id="sec11">
+            <a data-toggle="collapse" href="#collapse11">
+                <h2>Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries</h2>
+                <hr>
+            </a>
+            <div id="collapse11" class="collapse">
+                <p><strong>CSS3 transitions</strong> allows you to change property values smoothly over time. This can make things like animating menu buttons and navigation much easier.</p>
+                <hr>
+                <p>This css shows the difference between implementing a css change without vs. with transitions. Note how the css selectors such as :active and :hover are used to declare when the changes are to be made. The -webkit-tansition is used with transition to be compatible with most modern browsers. These prperties take the following parameters (from w3schools.com):</p>
+                <ul>
+                    <li>
+                        transition-property: Specifies the name of the CSS property the transition effect is for
+                    </li>
+                    <li>
+                        transition-duration: Specifies how many seconds or milliseconds the transition effect takes to complete
+                    </li>
+                    <li>
+                        transition-timing-function: Specifies the speed curve of the transition effect
+                    </li>
+                    <li>
+                        transition-delay: Defines when the transition effect will start
+                    </li>
+                </ul>
+                <pre class="prettyprint">
+    /* No transition */
+    #box0 {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+
+    #box0:hover {
+        width: 300px;
+    }
+
+    #box0:active {
+        background: blue;
+    }
+
+    /* Transition */
+    #box1 {
+        width: 100px;
+        height: 100px;
+        background: red;
+        -webkit-transition: all 2s; /* For Safari 3.1 to 6.0 */
+        transition: all 2s;
+    }
+
+    #box1:hover {
+        width: 300px;
+    }
+
+    #box1:active {
+        background: blue;
+    }
+                </pre>
+                <p>and the html to call the css:</p>
+                <pre class="prettyprint">
+    &lt;p&gt;No transition&lt;/p&gt;
+    &lt;div id=&quot;box0&quot;&gt;&lt;/div&gt;
+    &lt;p&gt;Transition&lt;/p&gt;
+    &lt;div id=&quot;box1&quot;&gt;&lt;/div&gt;
+                </pre>
+                <p>No transition</p>
+                <div id="box0"></div>
+                <p>Transition</p>
+                <div id="box1"></div>
+                <hr>
+                <p>Check boxes can use transitions with the :checked selector. The syntax is a little different then expected for real time updating.</p>
+                <pre class="prettyprint">
+    #check0:checked + #check0 {
+        font-weight: bold;
+        font-size: 300%;
+        color: red;
+    }
+    #check1:checked + #check1 {
+        -webkit-transition: color 2s; /* For Safari 3.1 to 6.0 */
+        transition: color 2s;
+        font-weight: bold;
+        font-size: 300%;
+        color: red;
+    }
+                </pre>
+                <p>Note, this time we are only animating the <em>color</em> and <strong>not</strong> <em>all</em> the properties like in the first example. Here is how we call the css in the html:</p>
+                <pre class="prettyprint">
+    &lt;input type=&quot;checkbox&quot; id=&quot;check0&quot; class=&quot;check-with-label&quot; /&gt;
+    &lt;label class=&quot;check-with-label&quot; id=&quot;check0&quot;&gt;No transition&lt;/label&gt;
+    &lt;br&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;check1&quot; class=&quot;check-with-label&quot; /&gt;
+    &lt;label for=&quot;check&quot; class=&quot;check-with-label&quot; id=&quot;check1&quot;&gt;Only animate color&lt;/label&gt;
+                </pre>
+                <input type="checkbox" id="check0" class="check-with-label" />
+                <label class="check-with-label" id="check0">No transition</label>
+                <br>
+                <input type="checkbox" id="check1" class="check-with-label" />
+                <label for="check" class="check-with-label" id="check1">Only animate color</label>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse9">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->

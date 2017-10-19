@@ -37,3 +37,49 @@ a{
     max-width: 500px;
     text-align: center;
 }
+
+/* Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries */
+/* No transition */
+#box0 {
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+
+#box0:hover {
+    width: 300px;
+}
+
+#box0:active {
+    background: blue;
+}
+
+/* Transition */
+#box1 {
+    width: 100px;
+    height: 100px;
+    background: red;
+    -webkit-transition: all 2s; /* For Safari 3.1 to 6.0 */
+    transition: all 2s;
+}
+
+#box1:hover {
+    width: 300px;
+}
+
+#box1:active {
+    background: blue;
+}
+
+#check0:checked + #check0 {
+    font-weight: bold;
+    font-size: 300%;
+    color: red;
+}
+#check1:checked + #check1 {
+    -webkit-transition: color 2s; /* For Safari 3.1 to 6.0 */
+    transition: color 2s;
+    font-weight: bold;
+    font-size: 300%;
+    color: red;
+}
