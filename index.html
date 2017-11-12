@@ -16,6 +16,7 @@
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
     <script src="js/script.js"></script>
+    <script src="js/draw.js"></script>
     <style>
         #eventTestOutput3 {
             height: 100px;
@@ -151,12 +152,19 @@
                 <hr>
                 <p>Objects can be given <strong>methods</strong> as follows:</p>
                 <pre class="prettyprint">
-    var Person = {
-        greet() {
-            console.log("Hello, I am " + this.name + "!");
-        }
-    };
+    Person.greet = function() {
+        var d = document.getElementById("object");
+        d.innerHTML = "Hello, my name is " + this.name +
+            ". I am " + this.race + ". I have a " +
+            this.desireForaGoodGradeInCIT261.toString() + 
+            " desire to do well in this class.";
+    }
+    Person.greet();
                 </pre>
+                <button class="btn btn-primary" onclick="objectTest();">Run Code</button>
+                <br>
+                <div class="container" id='object'></div>
+                <hr>
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse2">Collapse Section</button>
                 <hr>
             </div>
@@ -226,7 +234,7 @@
                 console.log(test);
                 document.getElementById("requestTestResult").innerHTML = test.body;
             } else {
-                document.getElementById("requestTestResult").innerHTML = "Error in request";
+                document.getElementById("requestTestResult").innerHTML = "Loading";
             }
         };
         xhttp.open("GET", 'https://jsonplaceholder.typicode.com/posts/1', true);
@@ -303,39 +311,59 @@
                 <hr>
             </a>
             <div id="collapse6" class="collapse">
-                <p>JavaScript Object Notation or <strong>JSON</strong> is a common way to exchange data on the internet between servers. A plain text JSON could arrive in the following way:</p>
                 <pre class="prettyprint">
-                    '{ 
-                        "race":"Hispanic", 
-                        "name":"Jared", 
-                        "desireForaGoodGradeInCIT261": 999
-                    }'
+    function domManipTest() {
+        // Creates the 'paragraph' element
+        var paragaph = document.createElement("p");
+
+        var text = document.createTextNode("This is a text node 
+        that will become a child in the paragraph element. 
+        Clicking the button again will add this paragraph again, 
+        thus duplicating the text.");
+
+        // Adds the text into the paragraph element
+        paragaph.appendChild(text);
+
+        // Adds the paragraph to the div for the user to see
+        document.getElementById("domManip").appendChild(paragaph);
+    }
                 </pre>
-                <p>Using <strong>JSON.parse()</strong>, we can convert the string into an object for easy data handeling:</p>
-                <pre class="prettyprint">
-                    /* Note the JSON is on one line.
-                     * Breaking up the text in the text editor
-                     * will break the JSON string
-                     */
-                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
-                    var d = document.getElementById("jsonParse");
-                    d.innerHTML = Person.name + " says Hi!"; 
-                </pre>
-                <button class="btn btn-primary" onclick="jsonParseTest();">Run Code</button>
+                <button class="btn btn-primary" onclick="domManipTest();">Run Code</button>
                 <br>
-                <div class="container" id='jsonParse'></div>
+                <div class="container" id='domManip'></div>
                 <hr>
-                <p>Using <strong>JSON.stringify()</strong>, we can convert the object back into a string for easy data transfer:</p>
                 <pre class="prettyprint">
-                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
-                    var d = document.getElementById("jsonString");
-                    d.innerHTML = Person.name + " says Hi!&lt;br&gt;";
-                    var jsonString = JSON.stringify(Person);
-                    d.innerHTML += jsonString;
+    function domManipTest2() {
+        // Set the div which the paragraphs reside in
+        // as the target to which we remove a child from
+        var target = document.getElementById("domManip");
+
+        // Remove the first child from the div
+        document.getElementById("domManip").removeChild(target.childNodes[0]);
+    }
                 </pre>
-                <button class="btn btn-primary" onclick="jsonStringTest();">Run Code</button>
+                <button class="btn btn-primary" onclick="domManipTest2();">Run Code</button>
                 <br>
-                <div class="container" id='jsonString'></div>
+                <hr>
+                <pre class="prettyprint">
+    function domManipTest3() {
+        // Creates the 'paragraph' element
+        var paragraph = document.createElement("p");
+
+        var text = document.createTextNode("THIS WILL BE INSERTED BEFORE THE FIRST PARAGRAPH");
+
+        paragaph.appendChild(text);
+
+        // Set the div which the paragraphs reside in
+        // as the target to which we insert
+        var target = document.getElementById("domManip");
+
+        // Insert before the first child
+        document.getElementById("domManip").insertBefore(paragraph, target.childNodes[0]);
+    }
+                </pre>
+                <button class="btn btn-primary" onclick="domManipTest3();">Run Code</button>
+                <br>
                 <hr>
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse6">Collapse Section</button>
                 <hr>
@@ -349,41 +377,89 @@
                 <hr>
             </a>
             <div id="collapse7" class="collapse">
-                <p>JavaScript Object Notation or <strong>JSON</strong> is a common way to exchange data on the internet between servers. A plain text JSON could arrive in the following way:</p>
                 <pre class="prettyprint">
-                    '{ 
-                        "race":"Hispanic", 
-                        "name":"Jared", 
-                        "desireForaGoodGradeInCIT261": 999
-                    }'
+    function jsCSSColor() {
+        // Create random HSL color
+        var cssHSL = randomHSL();
+
+        // Set text color to random color
+        document.getElementById("jsCSS").style.color = cssHSL;
+    }
+
+    function jsCSSSize() {
+        // Set text size to random size
+        document.getElementById("jsCSS").style.fontSize = "" 
+            + 300 * Math.random() + "%";
+    }
+
+    function randomHSL() {
+        return "hsl(" + 360 * Math.random() + ',' +
+        (70 + 30 * Math.random()) + '%,' + 
+        (10 + 80 * Math.random()) + '%)';
+    }
                 </pre>
-                <p>Using <strong>JSON.parse()</strong>, we can convert the string into an object for easy data handeling:</p>
-                <pre class="prettyprint">
-                    /* Note the JSON is on one line.
-                     * Breaking up the text in the text editor
-                     * will break the JSON string
-                     */
-                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
-                    var d = document.getElementById("jsonParse");
-                    d.innerHTML = Person.name + " says Hi!"; 
-                </pre>
-                <button class="btn btn-primary" onclick="jsonParseTest();">Run Code</button>
+                <button class="btn btn-primary" onclick="jsCSSColor();">Change Color</button>
+                <button class="btn btn-primary" onclick="jsCSSSize();">Change Size</button>
                 <br>
-                <div class="container" id='jsonParse'></div>
-                <hr>
-                <p>Using <strong>JSON.stringify()</strong>, we can convert the object back into a string for easy data transfer:</p>
-                <pre class="prettyprint">
-                    var Person = JSON.parse('{"race":"Hispanic","name":"Jared","desireForaGoodGradeInCIT261": 999}');
-                    var d = document.getElementById("jsonString");
-                    d.innerHTML = Person.name + " says Hi!&lt;br&gt;";
-                    var jsonString = JSON.stringify(Person);
-                    d.innerHTML += jsonString;
-                </pre>
-                <button class="btn btn-primary" onclick="jsonStringTest();">Run Code</button>
-                <br>
-                <div class="container" id='jsonString'></div>
+                <div class="container" id='jsCSS'>Change Me!</div>
                 <hr>
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse7">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript -->
+        <div class="container main" id="sec8">
+            <a data-toggle="collapse" href="#collapse8">
+                <h2>Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</h2>
+                <hr>
+            </a>
+            <div id="collapse8" class="collapse">
+                <pre class="prettyprint">
+    // CSS
+    .normal {
+        font-size: 100%;
+        color: black;
+        transition: all 2s;
+    }
+
+    .grow {
+        font-size: 300%;
+        color: red;
+    }
+
+    .move {
+        animation: moveFrames 3s infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes moveFrames {
+        0%  {transform: rotate(360deg);}
+        100% {transform: rotate(0deg);}
+    }
+
+    // Javascript
+    function cssTransitionTest(){
+        document.getElementById("cssTransAni").classList.add("grow");
+    }
+
+    function cssAnimationTest(){
+        document.getElementById("cssTransAni").classList.add("move");
+    }
+
+    function cssClear(){
+        document.getElementById("cssTransAni").classList.remove("grow");
+        document.getElementById("cssTransAni").classList.remove("move");
+    }
+                        
+                </pre>
+                <button class="btn btn-primary" onclick="cssTransitionTest();">Transition</button>
+                <button class="btn btn-primary" onclick="cssAnimationTest();">Animation</button>
+                <button class="btn btn-default" onclick="cssClear();">Clear</button>
+                <br>
+                <div id='cssTransAni' class="container normal">Trigger Me with the Buttons above.</div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse8">Collapse Section</button>
                 <hr>
             </div>
         </div>
@@ -457,105 +533,387 @@
             </div>
         </div>
 
+        <!-- HTML5 Tags - Video, Audio, and Canvas -->
+        <div class="container main" id="sec10">
+                <a data-toggle="collapse" href="#collapse10">
+                    <h2>HTML5 Tags - Video, Audio, and Canvas</h2>
+                    <hr>
+                </a>
+                <div id="collapse10" class="collapse">
+                    <pre class="prettyprint">
+    &lt;video width=&quot;300&quot; height=&quot;200&quot; loop controls&gt;
+        &lt;source src=&quot;http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    &lt;/video&gt;
+                    </pre>
+                    <p>This will load the video with dimensions 300x200, user controls, and looping:</p>
+                    <video width="300" height="200" loop controls>
+                        <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type="video/mp4">
+                    </video>
+                    <br>
+                    <hr>
+                    <pre class="prettyprint">
+    &lt;audio controls&gt;
+        &lt;source src=&quot;http://www.bensound.org/bensound-music/bensound-memories.mp3&quot; type=&quot;audio/mp3&quot;&gt;
+    &lt;/audio&gt;
+                    </pre>
+                    <p>And this will load audio with user controls. Looping and autoplay can be added in the audio tag as in the video tag.</p>
+                    <audio controls>
+                        <source src="http://www.bensound.org/bensound-music/bensound-memories.mp3" type="audio/mp3">
+                    </audio>
+                    <br>
+                    <hr>
+                    <pre class="prettyprint">
+    &lt;!-- HTML --&gt;
+    &lt;input type=&quot;submit&quot; class=&quot;btn&quot; value=&quot;Clear Sketchpad&quot; onclick=&quot;clearCanvas(canvas,ctx);&quot;&gt;
+    &lt;canvas id=&quot;sketchpad&quot; height=&quot;500&quot; width=&quot;500&quot; style=&quot;border:1px solid #000;&quot;&gt;
+        Sorry, your browser does not work with this game.
+    &lt;/canvas&gt;
+
+    // JS
+    // Variables for referencing the canvas and 2dcanvas context
+    var canvas,ctx;
+
+    // Variables to keep track of the mouse position and left-button status 
+    var mouseX,mouseY,mouseDown=0;
+
+    // Variables to keep track of the touch position
+    var touchX,touchY;
+
+    // Draws a dot at a specific position on the supplied canvas name
+    // Parameters are: A canvas context, the x position, the y position, the size of the dot
+    function drawDot(ctx,x,y,size) {
+        // Let's use black by setting RGB values to 0, and 255 alpha (completely opaque)
+        r=0; g=0; b=0; a=255;
+
+        // Select a fill style
+        ctx.fillStyle = &quot;rgba(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;,&quot;+(a/255)+&quot;)&quot;;
+
+        // Draw a filled circle
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI*2, true); 
+        ctx.closePath();
+        ctx.fill();
+    } 
+
+    // Clear the canvas context using the canvas width and height
+    function clearCanvas(canvas,ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Keep track of the mouse button being pressed and draw a dot at current location
+    function sketchpad_mouseDown() {
+        mouseDown=1;
+        drawDot(ctx,mouseX,mouseY,12);
+    }
+
+    // Keep track of the mouse button being released
+    function sketchpad_mouseUp() {
+        mouseDown=0;
+    }
+
+    // Keep track of the mouse position and draw a dot if mouse button is currently pressed
+    function sketchpad_mouseMove(e) { 
+        // Update the mouse co-ordinates when moved
+        getMousePos(e);
+
+        // Draw a dot if the mouse button is currently being pressed
+        if (mouseDown==1) {
+            drawDot(ctx,mouseX,mouseY,12);
+        }
+    }
+    // Get the current mouse position relative to the top-left of the canvas
+    function getMousePos(e) {
+        if (!e)
+            var e = event;
+
+        if (e.offsetX) {
+            mouseX = e.offsetX;
+            mouseY = e.offsetY;
+        }
+        else if (e.layerX) {
+            mouseX = e.layerX;
+            mouseY = e.layerY;
+        }
+    }
+    // Draw something when a touch start is detected
+    function sketchpad_touchStart() {
+        // Update the touch co-ordinates
+        getTouchPos();
+
+        drawDot(ctx,touchX,touchY,12);
+
+        // Prevents an additional mousedown event being triggered
+        event.preventDefault();
+    }
+
+    // Draw something and prevent the default scrolling when touch movement is detected
+    function sketchpad_touchMove(e) { 
+        // Update the touch co-ordinates
+        getTouchPos(e);
+
+        // During a touchmove event, unlike a mousemove event, we don't need to check if the touch is engaged, since there will always be contact with the screen by definition.
+        drawDot(ctx,touchX,touchY,12); 
+
+        // Prevent a scrolling action as a result of this touchmove triggering.
+        event.preventDefault();
+    }
+
+    // Get the touch position relative to the top-left of the canvas
+    // When we get the raw values of pageX and pageY below, they take into account the scrolling on the page
+    // but not the position relative to our target div. We'll adjust them using &quot;target.offsetLeft&quot; and
+    // &quot;target.offsetTop&quot; to get the correct values in relation to the top left of the canvas.
+    function getTouchPos(e) {
+        if (!e)
+            var e = event;
+        if(e.touches) {
+            if (e.touches.length == 1) { // Only deal with one finger
+                var touch = e.touches[0]; // Get the information for finger #1
+                touchX=touch.pageX-touch.target.offsetLeft;
+                touchY=touch.pageY-touch.target.offsetTop;
+            }
+        }
+    }
+
+    function resizeCanvas() {
+        if(window.innerWidth &lt; window.innerHeight){
+            canvas.width = window.innerWidth * .7;
+            canvas.height = canvas.width;
+        } else {
+            canvas.height = window.innerHeight * .7;
+            canvas.width = canvas.height;
+        }
+    }
+    // Set-up the canvas and add our event handlers after the page has loaded
+    function init0() {
+        // Get the specific canvas element from the HTML document
+        canvas = document.getElementById('sketchpad');
+
+        // If the browser supports the canvas tag, get the 2d drawing context for this canvas
+        if (canvas.getContext)
+            ctx = canvas.getContext('2d');
+
+        // Check that we have a valid context to draw on/with before adding event handlers
+        if (ctx) {
+            // React to mouse events on the canvas, and mouseup on the entire document
+            canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
+            canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
+            window.addEventListener('mouseup', sketchpad_mouseUp, false);
+
+            // React to touch events on the canvas
+            canvas.addEventListener('touchstart', sketchpad_touchStart, false);
+            canvas.addEventListener('touchmove', sketchpad_touchMove, false);
+
+            // Resize handler
+            window.addEventListener('resize', resizeCanvas, false);
+        }
+        resizeCanvas();
+    }
+    
+                    </pre>
+                    <p>Canvases can be used with javascript to render graphics to the screen. Here is a sketchpad I made for another project.</p>
+                    <input type="submit" class="btn" value="Clear Sketchpad" onclick="clearCanvas(canvas,ctx);">
+                    <canvas id="sketchpad" height="500" width="500" style="border:1px solid #000;">
+                        Sorry, your browser does not work with this game.
+                    </canvas>
+                    <br>
+                    <div class="container" id='jsonString'></div>
+                    <hr>
+                    <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse10">Collapse Section</button>
+                    <hr>
+                </div>
+            </div>
+
         <!-- Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries -->
         <div class="container main" id="sec11">
-            <a data-toggle="collapse" href="#collapse11">
-                <h2>Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries</h2>
+                <a data-toggle="collapse" href="#collapse11">
+                    <h2>Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries</h2>
+                    <hr>
+                </a>
+                <div id="collapse11" class="collapse">
+                    <p><strong>CSS3 transitions</strong> allows you to change property values smoothly over time. This can make things like animating menu buttons and navigation much easier.</p>
+                    <hr>
+                    <p>This css shows the difference between implementing a css change without vs. with transitions. Note how the css selectors such as :active and :hover are used to declare when the changes are to be made. The -webkit-tansition is used with transition to be compatible with most modern browsers. These prperties take the following parameters (from w3schools.com):</p>
+                    <ul>
+                        <li>
+                            transition-property: Specifies the name of the CSS property the transition effect is for
+                        </li>
+                        <li>
+                            transition-duration: Specifies how many seconds or milliseconds the transition effect takes to complete
+                        </li>
+                        <li>
+                            transition-timing-function: Specifies the speed curve of the transition effect
+                        </li>
+                        <li>
+                            transition-delay: Defines when the transition effect will start
+                        </li>
+                    </ul>
+                    <pre class="prettyprint">
+        /* No transition */
+        #box0 {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        #box0:hover {
+            width: 300px;
+        }
+
+        #box0:active {
+            background: blue;
+        }
+
+        /* Transition */
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            -webkit-transition: all 2s; /* For Safari 3.1 to 6.0 */
+            transition: all 2s;
+        }
+
+        #box1:hover {
+            width: 300px;
+        }
+
+        #box1:active {
+            background: blue;
+        }
+                    </pre>
+                    <p>and the html to call the css:</p>
+                    <pre class="prettyprint">
+        &lt;p&gt;No transition&lt;/p&gt;
+        &lt;div id=&quot;box0&quot;&gt;&lt;/div&gt;
+        &lt;p&gt;Transition&lt;/p&gt;
+        &lt;div id=&quot;box1&quot;&gt;&lt;/div&gt;
+                    </pre>
+                    <p>No transition</p>
+                    <div id="box0"></div>
+                    <p>Transition</p>
+                    <div id="box1"></div>
+                    <hr>
+                    <p>Check boxes can use transitions with the :checked selector. The syntax is a little different then expected for real time updating.</p>
+                    <pre class="prettyprint">
+        #check0:checked + #check0 {
+            font-weight: bold;
+            font-size: 300%;
+            color: red;
+        }
+        #check1:checked + #check1 {
+            -webkit-transition: color 2s; /* For Safari 3.1 to 6.0 */
+            transition: color 2s;
+            font-weight: bold;
+            font-size: 300%;
+            color: red;
+        }
+                    </pre>
+                    <p>Note, this time we are only animating the <em>color</em> and <strong>not</strong> <em>all</em> the properties like in the first example. Here is how we call the css in the html:</p>
+                    <pre class="prettyprint">
+        &lt;input type=&quot;checkbox&quot; id=&quot;check0&quot; class=&quot;check-with-label&quot; /&gt;
+        &lt;label class=&quot;check-with-label&quot; id=&quot;check0&quot;&gt;No transition&lt;/label&gt;
+        &lt;br&gt;
+        &lt;input type=&quot;checkbox&quot; id=&quot;check1&quot; class=&quot;check-with-label&quot; /&gt;
+        &lt;label for=&quot;check&quot; class=&quot;check-with-label&quot; id=&quot;check1&quot;&gt;Only animate color&lt;/label&gt;
+                    </pre>
+                    <input type="checkbox" id="check0" class="check-with-label" />
+                    <label class="check-with-label" id="check0">No transition</label>
+                    <br>
+                    <input type="checkbox" id="check1" class="check-with-label" />
+                    <label for="check" class="check-with-label" id="check1">Only animate color</label>
+                    <hr>
+                    <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse9">Collapse Section</button>
+                    <hr>
+                </div>
+            </div>
+
+        <!-- Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library) -->
+        <div class="container main" id="sec12">
+            <a data-toggle="collapse" href="#collapse12">
+                <h2>Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries</h2>
                 <hr>
             </a>
-            <div id="collapse11" class="collapse">
-                <p><strong>CSS3 transitions</strong> allows you to change property values smoothly over time. This can make things like animating menu buttons and navigation much easier.</p>
-                <hr>
-                <p>This css shows the difference between implementing a css change without vs. with transitions. Note how the css selectors such as :active and :hover are used to declare when the changes are to be made. The -webkit-tansition is used with transition to be compatible with most modern browsers. These prperties take the following parameters (from w3schools.com):</p>
-                <ul>
-                    <li>
-                        transition-property: Specifies the name of the CSS property the transition effect is for
-                    </li>
-                    <li>
-                        transition-duration: Specifies how many seconds or milliseconds the transition effect takes to complete
-                    </li>
-                    <li>
-                        transition-timing-function: Specifies the speed curve of the transition effect
-                    </li>
-                    <li>
-                        transition-delay: Defines when the transition effect will start
-                    </li>
-                </ul>
+            <div id="collapse12" class="collapse">
                 <pre class="prettyprint">
-    /* No transition */
-    #box0 {
+    #rotateBox {
         width: 100px;
         height: 100px;
         background: red;
     }
 
-    #box0:hover {
-        width: 300px;
-    }
-
-    #box0:active {
-        background: blue;
-    }
-
-    /* Transition */
-    #box1 {
-        width: 100px;
-        height: 100px;
-        background: red;
-        -webkit-transition: all 2s; /* For Safari 3.1 to 6.0 */
-        transition: all 2s;
-    }
-
-    #box1:hover {
-        width: 300px;
-    }
-
-    #box1:active {
-        background: blue;
+    #rotateBox:hover {
+        transform: rotate(30deg);
     }
                 </pre>
-                <p>and the html to call the css:</p>
-                <pre class="prettyprint">
-    &lt;p&gt;No transition&lt;/p&gt;
-    &lt;div id=&quot;box0&quot;&gt;&lt;/div&gt;
-    &lt;p&gt;Transition&lt;/p&gt;
-    &lt;div id=&quot;box1&quot;&gt;&lt;/div&gt;
-                </pre>
-                <p>No transition</p>
-                <div id="box0"></div>
-                <p>Transition</p>
-                <div id="box1"></div>
-                <hr>
-                <p>Check boxes can use transitions with the :checked selector. The syntax is a little different then expected for real time updating.</p>
-                <pre class="prettyprint">
-    #check0:checked + #check0 {
-        font-weight: bold;
-        font-size: 300%;
-        color: red;
-    }
-    #check1:checked + #check1 {
-        -webkit-transition: color 2s; /* For Safari 3.1 to 6.0 */
-        transition: color 2s;
-        font-weight: bold;
-        font-size: 300%;
-        color: red;
-    }
-                </pre>
-                <p>Note, this time we are only animating the <em>color</em> and <strong>not</strong> <em>all</em> the properties like in the first example. Here is how we call the css in the html:</p>
-                <pre class="prettyprint">
-    &lt;input type=&quot;checkbox&quot; id=&quot;check0&quot; class=&quot;check-with-label&quot; /&gt;
-    &lt;label class=&quot;check-with-label&quot; id=&quot;check0&quot;&gt;No transition&lt;/label&gt;
-    &lt;br&gt;
-    &lt;input type=&quot;checkbox&quot; id=&quot;check1&quot; class=&quot;check-with-label&quot; /&gt;
-    &lt;label for=&quot;check&quot; class=&quot;check-with-label&quot; id=&quot;check1&quot;&gt;Only animate color&lt;/label&gt;
-                </pre>
-                <input type="checkbox" id="check0" class="check-with-label" />
-                <label class="check-with-label" id="check0">No transition</label>
+                <p>A mouse hover will rotate the box 30 degrees</p>
+                <div id="rotateBox"></div>
                 <br>
-                <input type="checkbox" id="check1" class="check-with-label" />
-                <label for="check" class="check-with-label" id="check1">Only animate color</label>
+                <pre class="prettyprint">
+    #skewBox {
+        width: 100px;
+        height: 100px;
+        background: blue;
+    }
+
+    #skewBox:hover {
+        transform: skew(30deg);
+    }
+                </pre>
+                <p>A mouse hover will skew the box 30 degrees in the x direction</p>
+                <div id="skewBox"></div>
+                <br>
+                <pre class="prettyprint">
+    #scaleBox {
+        width: 100px;
+        height: 100px;
+        background: green;
+    }
+
+    #scaleBox:hover {
+        transform: scale(2,2);
+    }
+                </pre>
+                <p>A mouse hover will scale the x and y of the box by a factor of 2</p>
+                <div id="scaleBox"></div>
+                <br>
                 <hr>
-                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse9">Collapse Section</button>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse12">Collapse Section</button>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library) -->
+        <div class="container main" id="sec13">
+            <a data-toggle="collapse" href="#collapse13">
+                <h2>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries</h2>
+                <hr>
+            </a>
+            <div id="collapse13" class="collapse">
+                <pre class="prettyprint">
+    #aniBox {
+        width: 100px;
+        height: 100px;
+        background: purple;
+    }
+
+    #aniBox:hover {
+        animation-name: frames;
+        animation-duration: 5s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    @keyframes frames {
+        0%   {background-color: purple; transform: rotate(0deg);}
+        25%  {background-color: yellow; transform: rotate(90deg);}
+        50%  {background-color: blue; transform: rotate(180deg);}
+        100% {background-color: green; transform: rotate(270deg);}
+    }
+                </pre>
+                <p>Hover mouse over the box to trigger the animation</p>
+                <div id="aniBox"></div>
+                <hr>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse13">Collapse Section</button>
                 <hr>
             </div>
         </div>

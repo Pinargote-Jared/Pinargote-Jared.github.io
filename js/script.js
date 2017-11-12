@@ -1,6 +1,7 @@
 function init() {
     var d = document.getElementById("eventTestOutput");
     d.innerHTML = "Loaded Page!!";
+    init0();
 }
 
 //  Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays
@@ -24,6 +25,20 @@ function countUp2() {
 }
 
 // Object Creation Functions, Inheritance, Properties, Methods, Instantiation
+function objectTest(){
+    var Person = new Object();
+    Person.race = 'Hispanic';
+    Person.name = 'Jared';
+    Person.desireForaGoodGradeInCIT261 = 999;
+    Person.greet = function() {
+        var d = document.getElementById("object");
+        d.innerHTML = "Hello, my name is " + this.name +
+            ". I am " + this.race + ". I have a " +
+            this.desireForaGoodGradeInCIT261.toString() + 
+            " desire to do well in this class.";
+    }
+    Person.greet();
+}
 
 // JSON Parse, Stringify
 function jsonParseTest() {
@@ -49,7 +64,7 @@ function requestTest() {
             console.log(test);
             document.getElementById("requestTestResult").innerHTML = test.body;
         } else {
-            document.getElementById("requestTestResult").innerHTML = "Error in request";
+            document.getElementById("requestTestResult").innerHTML = "Loading";
         }
     };
     xhttp.open("GET", 'https://jsonplaceholder.typicode.com/posts/1', true);
@@ -93,8 +108,78 @@ function localTest() {
 }
 
 // DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.
+function domManipTest() {
+    // Creates the 'paragraph' element
+    var paragaph = document.createElement("p");
+
+    var text = document.createTextNode("This is a text node that will become a child in the paragraph element. Clicking the button again will add this paragraph again, thus duplicating the text.");
+
+    // Adds the text into the paragraph element
+    paragaph.appendChild(text);
+
+    // Adds the paragraph to the div for the user to see
+    document.getElementById("domManip").appendChild(paragaph);
+}
+
+function domManipTest2() {
+    // Set the div which the paragraphs reside in
+    // as the target to which we remove a child from
+    var target = document.getElementById("domManip");
+    
+    // Remove the first child from the div
+    document.getElementById("domManip").removeChild(target.childNodes[0]);
+}
+
+function domManipTest3() {
+    // Creates the 'paragraph' element
+    var paragraph = document.createElement("p");
+
+    var text = document.createTextNode("THIS WILL BE INSERTED BEFORE THE FIRST PARAGRAPH");
+
+    paragraph.appendChild(text);
+
+    // Set the div which the paragraphs reside in
+    // as the target to which we insert
+    var target = document.getElementById("domManip");
+    
+    // Insert before the first child
+    document.getElementById("domManip").insertBefore(paragraph, target.childNodes[0]);
+}
 
 // Manipulating CSS Class Properties Using JavaScript
+function jsCSSColor() {
+    // Create random HSL color
+    var cssHSL = randomHSL();
+
+    // Set text color to random color
+    document.getElementById("jsCSS").style.color = cssHSL;
+}
+
+function jsCSSSize() {
+    // Set text size to random size
+    document.getElementById("jsCSS").style.fontSize = "" 
+        + 300 * Math.random() + "%";
+}
+
+function randomHSL() {
+    return "hsl(" + 360 * Math.random() + ',' +
+    (70 + 30 * Math.random()) + '%,' + 
+    (10 + 80 * Math.random()) + '%)';
+}
+
+// Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript
+function cssTransitionTest(){
+    document.getElementById("cssTransAni").classList.add("grow");
+}
+
+function cssAnimationTest(){
+    document.getElementById("cssTransAni").classList.add("move");
+}
+
+function cssClear(){
+    document.getElementById("cssTransAni").classList.remove("grow");
+    document.getElementById("cssTransAni").classList.remove("move");
+}
 
 // Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events
 function eventTest() {
@@ -144,3 +229,11 @@ function eventTest() {
         move.style.background = "lightgray";
     }
 }
+
+// HTML5 Tags - Video, Audio, and Canvas
+
+// Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries (Thought Library)
+
+// Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)
+
+// Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)

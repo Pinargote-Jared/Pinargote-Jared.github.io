@@ -38,6 +38,28 @@ a{
     text-align: center;
 }
 
+/* Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript */
+.normal {
+    font-size: 100%;
+    color: black;
+    transition: all 2s;
+}
+
+.grow {
+    font-size: 300%;
+    color: red;
+}
+
+.move {
+    animation: moveFrames 3s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes moveFrames {
+    0%  {transform: rotate(360deg);}
+    100% {transform: rotate(0deg);}
+}
+
 /* Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries */
 /* No transition */
 #box0 {
@@ -82,4 +104,58 @@ a{
     font-weight: bold;
     font-size: 300%;
     color: red;
+}
+
+/* Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries */
+
+#rotateBox {
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+
+#rotateBox:hover {
+    transform: rotate(30deg);
+}
+
+#skewBox {
+    width: 100px;
+    height: 100px;
+    background: blue;
+}
+
+#skewBox:hover {
+    transform: skew(30deg);
+}
+
+#scaleBox {
+    width: 100px;
+    height: 100px;
+    background: green;
+}
+
+#scaleBox:hover {
+    transform: scale(2,2);
+}
+
+/* Designing, Defining, and Triggering CSS3 Animations without Custom Libraries */
+#aniBox {
+    width: 100px;
+    height: 100px;
+    background: purple;
+}
+
+#aniBox:hover {
+    animation-name: frames;
+    animation-duration: 5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes frames {
+    0%   {background-color: purple; transform: rotate(0deg);}
+    25%  {background-color: yellow; transform: rotate(90deg);}
+    50%  {background-color: blue; transform: rotate(180deg);}
+    100% {background-color: green; transform: rotate(270deg);}
 }
