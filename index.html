@@ -541,47 +541,32 @@
         var output = document.getElementById('eventTestOutput');
         var output2 = document.getElementById('eventTestOutput2');
         output.innerHTML = &quot;&lt;br&gt;&lt;button class='btn' id='eventButton'&gt;Click Me!&lt;/button&gt;&lt;br&gt;&quot;;
-        output2.innerHTML = &quot;&lt;br&gt;&lt;button class='btn' id='eventButton2'&gt;Touch Me!&lt;/button&gt;&lt;br&gt;&quot;;
+        // output2.innerHTML = &quot;&lt;br&gt;&lt;button class='btn' id='eventButton2'&gt;Touch Me!&lt;/button&gt;&lt;br&gt;&quot;;
         var btn = document.getElementById('eventButton');
-        var btn2 = document.getElementById('eventButton2');
         btn.onclick = function() {
             var rndCol = 'rgb(0,0,255)';
-            output.style.backgroundColor = rndCol;
-            output.innerHTML += &quot;Clicked!&lt;br&gt;&quot;;
+            btn.style.backgroundColor = rndCol;
+            btn.innerHTML = &quot;Clicked!&quot;;
         }
-        output2.onmouseover = function() {
+        btn.onmouseover = function() {
             var rndCol = 'rgb(255,255,255)';
-            output2.style.backgroundColor = rndCol;
-            output2.innerHTML += &quot;Mouse over!&lt;br&gt;&quot;;
+            btn.style.backgroundColor = rndCol;
+            btn.innerHTML = &quot;Mouse over!&lt;br&gt;&quot;;
         }
-        output2.onmouseout = function() {
+        btn.onmouseout = function() {
             var rndCol = 'rgb(0,255,0)';
-            output2.style.backgroundColor = rndCol;
-            output2.innerHTML += &quot;Mouse out!&lt;br&gt;&quot;;
+            btn.style.backgroundColor = rndCol;
+            btn.innerHTML = &quot;Mouse out!&lt;br&gt;&quot;;
         }
-        btn2.ontouchstart = function () {
+        output2.ontouchstart = function () {
             var rndCol = 'rgb(255,255,0)';
             output2.style.backgroundColor = rndCol;
-            output2.innerHTML += &quot;Touch Started!&lt;br&gt;&quot;;
+            output2.innerHTML = &quot;Touch Started!&lt;br&gt;&quot;;
         }
-        btn2.ontouchend = function () {
+        output2.ontouchend = function () {
             var rndCol = 'rgb(0,255,255)';
             output2.style.backgroundColor = rndCol;
-            output2.innerHTML += &quot;Touch Ended!&lt;br&gt;&quot;;
-        }
-        var move = document.getElementById(&quot;eventTestOutput3&quot;);
-
-        move.style.animation = &quot;move 4s 2&quot;;
-
-        move.animationstart = function() {
-            move.innerHTML = &quot;animationstart event occured - The animation has started&quot;;
-            move.style.background = &quot;pink&quot;;
-        }
-        move.animationiteration = function() {
-            move.style.background = &quot;lightblue&quot;;
-        }
-        move.animationend = function() {
-            move.style.background = &quot;lightgray&quot;;
+            output2.innerHTML = &quot;Touch Ended!&lt;br&gt;&quot;;
         }
     }
                 </pre>
