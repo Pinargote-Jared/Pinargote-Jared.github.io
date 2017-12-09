@@ -39,6 +39,57 @@ function objectTest(){
     }
     Person.greet();
 }
+function Person(first, last, gender) {
+    this.name = {
+        first,
+        last
+    };
+    this.gender = gender;
+};
+Person.prototype.greeting = function() {
+    var d = document.getElementById("object2");
+    d.innerHTML += "Hi!<br>";
+};
+Person.prototype.introduce = function() {
+    var d = document.getElementById("object2");
+    d.innerHTML += "I'm " + this.name.first + " "
+                  + this.name.last + ".<br>";
+};
+function Professor(first, last, gender, course) {
+    Person.call(this, first, last, gender);
+    this.course = course;
+}
+Professor.prototype = Object.create(Person.prototype);
+Professor.prototype.constructor = Professor;
+Professor.prototype.introduce = function() {
+    var d = document.getElementById("object2");
+    var title = "";
+    switch (this.gender) {
+        case "M":
+            title = "Bro.";
+            break;
+        case "F":
+            title = "Sis.";
+            break;
+        default:
+            break;
+    }
+    d.innerHTML += "I'm " + title + " "
+                  + this.name.last + ".";
+}
+function objectTest2(){
+    // Base Class
+    var me = new Person("Jared", "Pinargote", "M");
+    // Inherited Class
+    var prof = new Professor("Johan", "Baer", "M");
+    // Base Methods
+    me.greeting();
+    me.introduce();
+    // Inherited Method
+    prof.greeting();
+    // Modified Inherited Method
+    prof.introduce();
+}
 
 // JSON Parse, Stringify
 function jsonParseTest() {
@@ -186,47 +237,32 @@ function eventTest() {
     var output = document.getElementById('eventTestOutput');
     var output2 = document.getElementById('eventTestOutput2');
     output.innerHTML = "<br><button class='btn' id='eventButton'>Click Me!</button><br>";
-    output2.innerHTML = "<br><button class='btn' id='eventButton2'>Touch Me!</button><br>";
+    // output2.innerHTML = "<br><button class='btn' id='eventButton2'>Touch Me!</button><br>";
     var btn = document.getElementById('eventButton');
-    var btn2 = document.getElementById('eventButton2');
     btn.onclick = function() {
         var rndCol = 'rgb(0,0,255)';
-        output.style.backgroundColor = rndCol;
-        output.innerHTML += "Clicked!<br>";
+        btn.style.backgroundColor = rndCol;
+        btn.innerHTML = "Clicked!";
     }
-    output2.onmouseover = function() {
+    btn.onmouseover = function() {
         var rndCol = 'rgb(255,255,255)';
-        output2.style.backgroundColor = rndCol;
-        output2.innerHTML += "Mouse over!<br>";
+        btn.style.backgroundColor = rndCol;
+        btn.innerHTML = "Mouse over!<br>";
     }
-    output2.onmouseout = function() {
+    btn.onmouseout = function() {
         var rndCol = 'rgb(0,255,0)';
-        output2.style.backgroundColor = rndCol;
-        output2.innerHTML += "Mouse out!<br>";
+        btn.style.backgroundColor = rndCol;
+        btn.innerHTML = "Mouse out!<br>";
     }
-    btn2.ontouchstart = function () {
+    output2.ontouchstart = function () {
         var rndCol = 'rgb(255,255,0)';
         output2.style.backgroundColor = rndCol;
-        output2.innerHTML += "Touch Started!<br>";
+        output2.innerHTML = "Touch Started!<br>";
     }
-    btn2.ontouchend = function () {
+    output2.ontouchend = function () {
         var rndCol = 'rgb(0,255,255)';
         output2.style.backgroundColor = rndCol;
-        output2.innerHTML += "Touch Ended!<br>";
-    }
-    var move = document.getElementById("eventTestOutput3");
-
-    move.style.animation = "move 4s 2";
-
-    move.animationstart = function() {
-        move.innerHTML = "animationstart event occured - The animation has started";
-        move.style.background = "pink";
-    }
-    move.animationiteration = function() {
-        move.style.background = "lightblue";
-    }
-    move.animationend = function() {
-        move.style.background = "lightgray";
+        output2.innerHTML = "Touch Ended!<br>";
     }
 }
 

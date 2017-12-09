@@ -1,0 +1,14 @@
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+
+<script src="js/app.js" ></script>
+<!--span#clock-->
+<div class="jumbotron">
+    <div class="ng-cloak text-center" ng-app="myWeatherApp" ng-controller="myCtrl">
+        <p>In {{Data.city}}, {{Data.region}} it is now</p>
+        <h1>{{Data.temp}}°{{Data.unit}}</h1>
+        <!--input#change(type="checkbox",  ng-model="Data.temp", checked, data-toggle="toggle",data-width="85", data-height="5", data-on="Imperial" data-off="Metric" data-onstyle="default" data-offstyle="default" name="units")-->
+        <button class="btn btn-primary" ng-click="Data.change()">Change Units</button><br/><img ng-src="{{Data.icon}}"/>
+        <p>with {{Data.description}}</p>
+    </div>
+</div>

@@ -165,6 +165,70 @@
                 <br>
                 <div class="container" id='object'></div>
                 <hr>
+                <p>Objects can also be defined in the following way:</p>
+                <pre class="prettyprint">
+    function Person(first, last, gender) {
+        this.name = {
+            first,
+            last
+        };
+        this.gender = gender;
+    };
+    Person.prototype.greeting = function() {
+        var d = document.getElementById(&quot;object2&quot;);
+        d.innerHTML += &quot;Hi!&lt;br&gt;&quot;;
+    };
+    Person.prototype.introduce = function() {
+        var d = document.getElementById(&quot;object2&quot;);
+        d.innerHTML += &quot;I'm &quot; + this.name.first + &quot; &quot;
+                      + this.name.last + &quot;.&lt;br&gt;&quot;;
+    };
+                </pre>
+                <p>This way allows us to inherit objects like so:</p>
+                <pre class="prettyprint">
+    function Professor(first, last, gender, course) {
+        Person.call(this, first, last, gender);
+        this.course = course;
+    }
+    Professor.prototype = Object.create(Person.prototype);
+    Professor.prototype.constructor = Professor;
+    Professor.prototype.introduce = function() {
+        var d = document.getElementById(&quot;object2&quot;);
+        var title = &quot;&quot;;
+        switch (this.gender) {
+            case &quot;M&quot;:
+                title = &quot;Bro.&quot;;
+                break;
+            case &quot;F&quot;:
+                title = &quot;Sis.&quot;;
+                break;
+            default:
+                break;
+        }
+        d.innerHTML += &quot;I'm &quot; + title + &quot; &quot;
+                      + this.name.last + &quot;.&quot;;
+    }
+                </pre>
+                <p>We can call the objects in the following way:</p>
+                <pre class="prettyprint">
+    function objectTest2(){
+        // Base Class
+        var me = new Person(&quot;Jared&quot;, &quot;Pinargote&quot;, &quot;M&quot;);
+        // Inherited Class
+        var prof = new Professor(&quot;Johan&quot;, &quot;Baer&quot;, &quot;M&quot;);
+        // Base Methods
+        me.greeting();
+        me.introduce();
+        // Inherited Method
+        prof.greeting();
+        // Modified Inherited Method
+        prof.introduce();
+    }
+                </pre>
+                <button class="btn btn-primary" onclick="objectTest2();">Run Code</button>
+                <br>
+                <div class="container" id='object2'></div>
+                <hr>
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse2">Collapse Section</button>
                 <hr>
             </div>
@@ -523,10 +587,8 @@
                 </pre>
                 <button class="btn btn-primary" onclick="eventTest();">Run Code</button>
                 <br>
-                <div class="container" id='eventTestOutput'>Test Div</div>
-                <div class="container" id='eventTestOutput2'>Mouse/Touch Div</div>
-                <hr>
-                <div class="container" id='eventTestOutput3'>Click Run Code move</div>
+                <div class="container" id='eventTestOutput'></div><br><br>
+                <div class="container" id='eventTestOutput2'>Touch Me!</div>
                 <hr>
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse9">Collapse Section</button>
                 <hr>
