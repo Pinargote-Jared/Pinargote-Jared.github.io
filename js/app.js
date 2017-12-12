@@ -1,5 +1,5 @@
 function init() {
-    if(localStorage.city !== null || localStorage.city !== undefined){
+    if(localStorage.city !== null || localStorage.city !== "undefined"){
         getWeather(localStorage.city);
         showDefaultCity();
     } else {
