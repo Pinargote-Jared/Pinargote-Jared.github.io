@@ -1,14 +1,26 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="css/app.css" rel="stylesheet">
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
 
 <script src="js/app.js" ></script>
-<!--span#clock-->
-<div class="jumbotron">
-    <div class="ng-cloak text-center" ng-app="myWeatherApp" ng-controller="myCtrl">
-        <p>In {{Data.city}}, {{Data.region}} it is now</p>
-        <h1>{{Data.temp}}°{{Data.unit}}</h1>
-        <!--input#change(type="checkbox",  ng-model="Data.temp", checked, data-toggle="toggle",data-width="85", data-height="5", data-on="Imperial" data-off="Metric" data-onstyle="default" data-offstyle="default" name="units")-->
-        <button class="btn btn-primary" ng-click="Data.change()">Change Units</button><br/><img ng-src="{{Data.icon}}"/>
-        <p>with {{Data.description}}</p>
+
+<body onload="init();">
+    <!--span#clock-->
+    <div class="jumbotron">
+        <div class="text-center" id="weather-info">
+            <p id="city"></p>
+            <h1 id="temp"></h1>
+            <p id="desc"></p>
+        </div>
+        <input id="searchTextField" type="text" size="20" placeholder="Enter a location" autocomplete="on" onkeypress="handle(event);">
+        <button class="primary" onclick="checkWeather();">Check Weather</button>
     </div>
-</div>
+    <div id="box1" class="jumbotron">
+        <p style="text-align:right;color:rgb(75, 75, 75)"><em>Hover Over for Settings</em></p>
+        <p id="defaultCity"></p>
+        <button class="primary" onclick="saveCity();">Save Current City as Default</button>
+        <button class="secondary" onclick="loadSavedCity();">Load Default City</button>
+        <p>About:</p>
+        <p>This app shows the current temperature of any city in the world. You can save a city as your default city which will display next time you visit this page.</p>
+    </div>
+</body>

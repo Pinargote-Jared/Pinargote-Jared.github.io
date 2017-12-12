@@ -81,16 +81,12 @@ a{
     width: 100px;
     height: 100px;
     background: red;
-    -webkit-transition: all 2s; /* For Safari 3.1 to 6.0 */
-    transition: all 2s;
+    -webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: all 0.3s;
 }
 
 #box1:hover {
     width: 300px;
-}
-
-#box1:active {
-    background: blue;
 }
 
 #check0:checked + #check0 {

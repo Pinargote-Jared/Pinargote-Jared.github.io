@@ -1,64 +1,93 @@
-/*(function () {
-  var clockElement = document.getElementById( "clock" );
-  function updateClock ( clock ) {
-		clock.innerHTML = new  Date().toLocaleTimeString();
-  }
-	setInterval(function () {
-		updateClock( clockElement );
-  		}, 1000);
-}());*/
+function init() {
+    if(localStorage.city !== null){
+        getWeather(localStorage.city);
+        showDefaultCity();
+    } else {
+        getWeather("rexburg");
+    }
+    var options = {
+        types: ['(cities)']
+    };
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+}
 
-var app = angular.module('myWeatherApp', []);
+function getWeather(city) {
+    // var temp
+    var weather = document.getElementById('weather-info');
+    weather.innerHTML = "<div class='loader'></div>";
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            w = JSON.parse(xhttp.responseText);
+            handleWeather(w);
+        } else if (this.readyState == 4 && this.status !== 200) {
+            handleError();
+        }
+    };
+    var appid = "5f880474d3248067ea84617f8ed6d0c9";
+    var url = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+appid;
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
 
-app.service('myWeatherApp', function($http) {
-	this.getLoc = function() {
-		return $http.jsonp("http://ipinfo.io/json?callback=JSON_CALLBACK");
-	};
-	this.getWeather = function(city){
-		var api = "http://api.openweathermap.org/data/2.5/weather?q=";
-		var units = "&units=imperial";
-		var appid = "&APPID=061f24cf3cde2f60644a8240302983f2"
-		var cb = "&callback=JSON_CALLBACK";
-		return $http.jsonp(api + city + units+ appid + cb);
-	};
-});
+function handleWeather(w) {
+    var weather = document.getElementById('weather-info');
+    weather.innerHTML = '<p id="city"></p><h1 id="temp"></h1><p id="desc"></p>';
+    var city = document.getElementById("city");
+    var temp = document.getElementById("temp");
+    var desc = document.getElementById("desc");
+    var f = KToF(w.main.temp);
+    var t = parseInt(f);
+    var img = "<img src='http://openweathermap.org/img/w/"+w.weather[0].icon+".png' alt='weather icon'>"; 
+    city.innerHTML = "In "+w.name+" it is:";
+    temp.innerHTML = img+t+"°F";
+    desc.innerHTML = w.weather[0].description;
+}
 
+function handleError() {
+    var weather = document.getElementById('weather-info');
+    weather.innerHTML = '<p id="city"></p><h1 id="temp"></h1><p id="desc"></p>';
+    var city = document.getElementById("city");
+    var temp = document.getElementById("temp");
+    var desc = document.getElementById("desc");
+    var img = "";
+    var text = document.getElementById("searchTextField").value;
+    var c = text.split(',')[0];
+    city.innerHTML = "Could not find weather for "+c;
+    temp.innerHTML = "--°F";
+    desc.innerHTML = "--";
+}
 
-app.controller('myCtrl', function($scope, myWeatherApp) {
-	$scope.Data = {};
-	$scope.Data.unit = "F";
-	$scope.Data.imperial = true;
-	myWeatherApp.getLoc().success(function(data) {
-		var city = data.city + ',' + data.country;
-		$scope.Data.city = data.city;
-		$scope.Data.region = data.region;
-		
-		myWeatherApp.getWeather(city).success(function(data){
-			$scope.Data.temp = Math.round(data.main.temp);
-			$scope.Data.F = $scope.Data.temp;
-			$scope.Data.unit = "F";
-			$scope.Data.des = data.weather[0].main;
-			$scope.Data.C = Math.round(($scope.Data.temp -32) * (5/9));
-			var icon = data.weather[0].icon;
-			var url = ["http://openweathermap.org/img/w/", icon, ".png"]
-			$scope.Data.icon = url.join('');
-			$scope.Data.description = data.weather[0].description;
-			
-			});
-		});
-	
-	$scope.Data.change = function(){
-		
-		if($scope.Data.imperial){
-     $scope.Data.unit ='C';
-     $scope.Data.temp = $scope.Data.C;
-     return $scope.Data.imperial = false;
-     }
-    $scope.Data.unit ='F';
-    $scope.Data.temp = $scope.Data.F;
-		console.log("Called");
-    return $scope.Data.imperial = true;
-  	}
+function checkWeather(){
+    var text = document.getElementById("searchTextField").value;
+    var city = text.split(',')[0];
+    sessionStorage.city = city;
+    getWeather(city);
+}
 
-	
-});
+function KToF(temp) {
+  return ((temp-273.15)*1.8)+32;
+}
+
+function handle(e){
+    if(e.keyCode === 13){
+        e.preventDefault();
+        checkWeather();
+    }
+}
+
+function saveCity() {
+    console.log("City Saved");
+    localStorage.city = sessionStorage.city;
+    showDefaultCity();
+}
+
+function loadSavedCity(params) {
+    getWeather(localStorage.city);
+}
+
+function showDefaultCity() {
+    document.getElementById("defaultCity").innerHTML = 
+    "Default City: " + localStorage.city;
+}
