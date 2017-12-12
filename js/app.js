@@ -1,9 +1,11 @@
 function init() {
-    if(localStorage.city !== null || localStorage.city !== "undefined"){
+    if(localStorage.city !== null && localStorage.city !== "undefined" && localStorage.city !== undefined){
         getWeather(localStorage.city);
         showDefaultCity();
     } else {
+        localStorage.city = "Rexburg";
         getWeather("rexburg");
+        showDefaultCity();
     }
     var options = {
         types: ['(cities)']
