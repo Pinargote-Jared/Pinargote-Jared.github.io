@@ -26,7 +26,7 @@ function getWeather(city) {
         }
     };
     var appid = "5f880474d3248067ea84617f8ed6d0c9";
-    var url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+appid;
+    var url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+appid;
     xhttp.open("GET", url, true);
     xhttp.send();
 }
